@@ -1,0 +1,14 @@
+.hl-grid { align-items: start; }
+#text { min-height: 200px; }
+.hl-sep { height: 1px; background: var(--line); margin: 4px 0; }
+.hl-results { display: grid; gap: 8px; }
+.hl-row {
+  display: grid; grid-template-columns: 92px minmax(0, 1fr) auto; gap: 10px; align-items: center;
+  padding: 10px 10px 10px 12px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--line);
+  transition: border-color var(--dur), background var(--dur);
+}
+.hl-row.is-match { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 10%, var(--surface-2)); }
+.hl-name { display: grid; font-weight: 650; font-size: 13px; }
+.hl-name .faint { font-size: 11.5px; font-weight: 500; }
+.hl-val { background: none; padding: 0; font-size: 12.5px; word-break: break-all; line-height: 1.5; color: var(--text); }
+@media (max-width: 480px) { .hl-row { grid-template-columns: minmax(0, 1fr) auto; } .hl-val { grid-column: 1 / -1; grid-row: 2; } }

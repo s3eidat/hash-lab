@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Hash Lab — Free MD5, SHA-1, SHA-256, SHA-512 &amp; HMAC Generator | S3eidat Tools</title>
+<meta name="description" content="Hash text and files with MD5, SHA-1, SHA-256, SHA-384 and SHA-512, compute HMAC, and verify a checksum. Hex or Base64. Free, private, nothing uploaded.">
+<meta property="og:title" content="Hash Lab — free, private hash and checksum tool">
+<meta property="og:description" content="MD5, SHA-1, SHA-256, SHA-512 and HMAC for text and files. Runs 100% in your browser.">
+<meta property="og:image" content="screenshot.png">
+<link rel="icon" href="kit/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="app.css">
+<script src="kit/kit.js"></script>
+</head>
+<body data-tool="hash-lab">
+<main class="s3-main">
+  <section class="s3-hero">
+    <h1>Hash Lab</h1>
+    <p>MD5, SHA-1, SHA-256, SHA-384 and SHA-512 for text and files, plus HMAC and a checksum compare box. Computed on your device.</p>
+  </section>
+
+  <div class="grid-2 hl-grid">
+    <section class="card stack">
+      <div class="row between">
+        <div class="seg" id="src" role="group" aria-label="Input source">
+          <button aria-pressed="true" data-v="text">Text</button>
+          <button aria-pressed="false" data-v="file">File</button>
+        </div>
+        <button class="btn ghost small" id="clear">Clear</button>
+      </div>
+      <div id="textBox" class="stack">
+        <label class="field" for="text">Text (hashed as UTF-8)</label>
+        <textarea class="textarea" id="text" dir="auto" spellcheck="false" placeholder="Type or paste text… hashes update as you type"></textarea>
+        <span class="faint" id="textInfo">0 bytes</span>
+      </div>
+      <div id="fileBox" class="stack" hidden>
+        <label class="drop" id="drop" tabindex="0">
+          <input type="file" hidden>
+          <svg class="i"><use href="#i-file"/></svg>
+          <b>Drop a file or click to choose</b>
+          <span class="faint">Up to 512 MB. The file is read locally, never uploaded.</span>
+        </label>
+        <div class="row" id="fileInfo" hidden><span class="chip accent" id="fileName"></span><span class="faint" id="fileSize"></span></div>
+      </div>
+      <div class="hl-sep"></div>
+      <h2>HMAC <small>keyed hash</small></h2>
+      <div class="row">
+        <label class="field grow">Secret key<input class="input mono" id="key" spellcheck="false" autocomplete="off" placeholder="Leave empty to skip HMAC"></label>
+        <label class="field">Algorithm
+          <select class="select" id="hmacAlg">
+            <option value="SHA-256">HMAC-SHA256</option>
+            <option value="SHA-384">HMAC-SHA384</option>
+            <option value="SHA-512">HMAC-SHA512</option>
+            <option value="SHA-1">HMAC-SHA1</option>
+          </select>
+        </label>
+      </div>
+      <p class="faint">The key stays in this tab. It is not saved.</p>
+    </section>
+
+    <section class="card stack">
+      <div class="row between">
+        <h2>Hashes</h2>
+        <div class="seg" id="fmt" role="group" aria-label="Output format">
+          <button aria-pressed="true" data-v="hex">hex</button>
+          <button aria-pressed="false" data-v="HEX">HEX</button>
+          <button aria-pressed="false" data-v="b64">Base64</button>
+        </div>
+      </div>
+      <div id="results" class="hl-results" aria-live="polite"></div>
+      <div class="hl-sep"></div>
+      <label class="field">Compare with an expected hash
+        <input class="input mono" id="expect" spellcheck="false" autocomplete="off" placeholder="Paste the checksum from the download page">
+      </label>
+      <div class="row"><span class="chip" id="verdict">Paste a hash to verify</span></div>
+      <div class="row">
+        <button class="btn" id="copyAll"><svg class="i"><use href="#i-copy"/></svg>Copy all</button>
+        <button class="btn" id="saveAll"><svg class="i"><use href="#i-download"/></svg>.txt</button>
+      </div>
+    </section>
+  </div>
+</main>
+<script src="app.js"></script>
+</body>
+</html>
